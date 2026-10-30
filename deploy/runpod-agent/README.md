@@ -54,6 +54,20 @@ bash deploy/runpod-agent/local-agent.sh /absolute/path/to/your/project
 
 This launcher starts a private local OpenCode server and asks before changes and command execution. Model requests, including file content supplied by the local tools, go to your Runpod model. It does not provide the remote agent with an inbound shell on your Mac.
 
+On the prepared Mac checkout, the v2.2.2 binary and credentials are already under the git-ignored `.runtime/` directory. The launcher reads `.runtime/access.json` automatically, so only the project directory is needed. Other installations can use the environment variables above, or `RUNPOD_ACCESS_FILE` to select a private JSON file containing `pod_id` and `model_key`.
+
+## Live verification
+
+The Qwen3-4B profile was tested on an A40 in Runpod Secure Cloud: the model wrote a Python file, executed it with exit code 0, edited it in the same session, and executed the new version with exit code 0. Both the agent API and model API rejected unauthenticated requests. This is a tool-execution smoke test, not a claim about performance on complex coding tasks.
+
+To repeat the live test with a private JSON file containing `pod_id`, `password`, and `model_key`:
+
+```bash
+python3 deploy/runpod-agent/smoke-test.py --access-file /path/to/access.json
+```
+
+The script writes `smoke-result.json` beside the access file. Keep credentials out of Git; `.runtime/` is ignored.
+
 ## Permissions and lifecycle
 
 The cloud profile allows normal tools automatically, asks before selected shell commands such as `rm`, `sudo`, `git push`, and `git reset`, and denies the `external_directory` permission. These are OpenCode approval rules, **not an operating-system sandbox**: allowed shell programs have the container user's filesystem access. The container currently runs as root. Keep unrelated credentials and projects out of it.
