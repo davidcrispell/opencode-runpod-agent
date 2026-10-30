@@ -28,7 +28,6 @@ RUN chmod 0444 /opt/runpod-agent/opencode.json \
 ENV OPENCODE_CONFIG=/opt/runpod-agent/opencode.json \
     OPENCODE_CONFIG_PROJECT_DISABLE=true \
     OPENCODE_DISABLE_CLAUDE_CODE=true \
-    OPENCODE_DISABLE_EXTERNAL_SKILLS=true \
     OPENCODE_DISABLE_MODELS_FETCH=true \
     XDG_DATA_HOME=/workspace/.opencode/data \
     XDG_CACHE_HOME=/workspace/.opencode/cache \

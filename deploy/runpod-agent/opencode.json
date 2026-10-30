@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "runpod-local/deepseek-v4.1-flash",
+  "model": "runpod-local/runpod-model",
   "update": "disable",
   "share": "disabled",
   "websearch": false,
@@ -28,8 +28,8 @@
         "chunkTimeout": 300000
       },
       "models": {
-        "deepseek-v4.1-flash": {
-          "name": "DeepSeek V4.1 Flash Abliterated",
+        "runpod-model": {
+          "name": "Runpod model",
           "capabilities": {
             "tools": true,
             "input": ["text"],
@@ -37,7 +37,7 @@
             "temperature": true
           },
           "limit": {
-            "context": 32768,
+            "context": 16384,
             "output": 4096
           }
         }

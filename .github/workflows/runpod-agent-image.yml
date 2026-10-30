@@ -29,7 +29,7 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository_owner }}/opencode-runpod-agent
           tags: |
-            type=raw,value=2.2.2-v1
+            type=raw,value=2.2.2-v2
             type=sha,prefix=2.2.2-
       - uses: docker/build-push-action@v7
         with:
@@ -39,3 +39,5 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

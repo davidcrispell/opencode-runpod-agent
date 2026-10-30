@@ -36,3 +36,4 @@ logs/
 *.bun-build
 tsconfig.tsbuildinfo
 /artifacts/
+/deploy/runpod-agent/.runtime/
